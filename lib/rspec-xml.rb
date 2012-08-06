@@ -1,7 +1,8 @@
 require "rspec-xml/version"
 
-module Rspec
- module Xml
-    # Your code goes here...
-  end
+Bundler.require
+require 'rspec/xml_matchers'
+
+RSpec.configure do |config|
+  config.include XMLMatchers
 end

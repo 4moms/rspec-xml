@@ -1,5 +1,5 @@
 # rspec-xml
-spec your xml
+*spec your xml*
 
 ## installation
 ```ruby

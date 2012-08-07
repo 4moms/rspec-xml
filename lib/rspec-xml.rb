@@ -1,8 +1,13 @@
-require "rspec-xml/version"
+require 'rubygems'
+require 'bundler'
+Bundler.require :default
 
-Bundler.require
-require 'rspec/xml_matchers'
+module RSpecXML
+end
+
+require "rspec-xml/version"
+require 'rspec-xml/xml_matchers'
 
 RSpec.configure do |config|
-  config.include XMLMatchers
+  config.include RSpecXML::XMLMatchers
 end

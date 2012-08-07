@@ -1,1 +1,1 @@
-require File.expand_path('../../lib/rspec', __FILE__)
+require File.expand_path('../../lib/rspec-xml', __FILE__)

@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'bundler'
-Bundler.require :default
+require 'bundler/setup'
+
+require 'nokogiri'
 
 module RSpecXML
 end

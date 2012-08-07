@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   s.add_development_dependency 'bundler'
+	s.add_development_dependency 'turnip'
 
   s.add_runtime_dependency 'rspec'
   s.add_runtime_dependency 'nokogiri'

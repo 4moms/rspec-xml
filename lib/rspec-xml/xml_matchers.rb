@@ -4,33 +4,29 @@ module RSpecXML
 				
 			def initialize(xpath)
 				self.xpath = xpath 
+				@matcher = Matcher.new(:xpath => xpath)
 			end 
 
 			def with_text(text)
-				matcher = TextMatcher.new(:xpath => xpath, :text => text)
+				@matcher = TextMatcher.new(:xpath => xpath, :text => text)
 				self
 			end
 
 			def matches?(xml)
-				matcher.matches?(xml)
+				@matcher.matches?(xml)
 			end
 
 			def failure_message_for_should
-				matcher.failure_message_for_should
+				@matcher.failure_message_for_should
 			end
 
 			def failure_message_for_should_not
-				matcher.failure_message_for_should_not
+				@matcher.failure_message_for_should_not
 			end
 
 			private
 
-			attr_accessor :xpath, :matcher
-
-			def matcher
-				return @matcher if @matcher
-				@matcher = Matcher.new(:xpath => @xpath)
-			end
+			attr_accessor :xpath
 
 			class Matcher
 
@@ -56,7 +52,7 @@ module RSpecXML
 
 			end
 
-			class TextMatcher < Matcher
+			class TextMatcher
 
 				def initialize(options)
 					self.xpath = options[:xpath]
@@ -77,7 +73,7 @@ module RSpecXML
 
 				private
 
-				attr_accessor :text
+				attr_accessor :text, :xpath
 			end
 		end
 

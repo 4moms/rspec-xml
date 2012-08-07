@@ -3,24 +3,81 @@ module RSpecXML
 		class HaveXPath
 				
 			def initialize(xpath)
-				@xpath = xpath 
+				self.xpath = xpath 
 			end 
 
 			def with_text(text)
-				@text = text
+				matcher = TextMatcher.new(:xpath => xpath, :text => text)
 				self
 			end
 
 			def matches?(xml)
-				::Nokogiri::XML(xml).xpath(@xpath).text == @text
+				matcher.matches?(xml)
 			end
 
 			def failure_message_for_should
-				"expected #{@xpath} to exist" 
+				matcher.failure_message_for_should
 			end
 
 			def failure_message_for_should_not
-				"expected #{@xpath} to not exist" 
+				matcher.failure_message_for_should_not
+			end
+
+			private
+
+			attr_accessor :xpath, :matcher
+
+			def matcher
+				return @matcher if @matcher
+				@matcher = Matcher.new(:xpath => @xpath)
+			end
+
+			class Matcher
+
+				def initialize(options={})
+					self.xpath = options[:xpath]
+				end
+
+				def matches?(xml)
+					::Nokogiri::XML(xml).xpath(@xpath).count > 0
+				end
+
+				def failure_message_for_should
+					"expected #{xpath} to exist" 
+				end
+
+				def failure_message_for_should_not
+					"expected #{xpath} to not exist"
+				end
+
+				private
+
+				attr_accessor :xpath
+
+			end
+
+			class TextMatcher < Matcher
+
+				def initialize(options)
+					self.xpath = options[:xpath]
+					self.text = options[:text]
+				end
+
+				def matches?(xml)
+					::Nokogiri::XML(xml).xpath(xpath).text == text
+				end
+
+				def failure_message_for_should
+					"expected #{xpath} to contain #{text}"
+				end
+
+				def failure_message_for_should_not
+					"expected #{xpath} to contain #{text}"
+				end
+
+				private
+
+				attr_accessor :text
 			end
 		end
 

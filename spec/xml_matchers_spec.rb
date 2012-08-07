@@ -17,5 +17,16 @@ describe RSpecXML::XMLMatchers do
 					should raise_error(RSpec::Expectations::ExpectationNotMetError)
 			end
 		end
+
+		context 'without specifying text' do
+			it 'should pass if the node exists' do
+				'<node>something</node>'.should have_xpath('/node')
+			end
+
+			it 'should fail if the node does not exist' do
+				lambda { "<node>HAI</node>".should have_xpath('/ne')}.
+					should raise_error(RSpec::Expectations::ExpectationNotMetError)
+			end
+		end
   end
 end

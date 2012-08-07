@@ -1,5 +1,6 @@
 source "http://rubygems.org"
 
-gem 'nokogiri'
-# Specify your gem's dependencies in rspec-xml.gemspec
+# bundler doesn't require this from the .gemspec
+# https://github.com/carlhuda/bundler/issues/1041
+
 gemspec

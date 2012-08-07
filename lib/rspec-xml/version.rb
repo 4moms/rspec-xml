@@ -1,5 +1,3 @@
-module Rspec
-  module Xml
-    VERSION = "0.0.2"
-  end
+module RSpecXML
+	VERSION = "0.0.2"
 end

@@ -4,7 +4,7 @@ require "rspec-xml/version"
 
 Gem::Specification.new do |s|
   s.name        = "rspec-xml"
-  s.version     = Rspec::Xml::VERSION
+  s.version     = RSpecXml::VERSION
   s.authors     = ["Dan Carper"]
   s.email       = ["dcarper@dreamagile.com"]
   s.homepage    = ""

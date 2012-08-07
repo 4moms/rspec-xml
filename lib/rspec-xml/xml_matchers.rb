@@ -8,7 +8,7 @@ module RSpecXML
 			end 
 
 			def with_text(text)
-				@matcher = TextMatcher.new(:xpath => xpath, :text => text)
+				@matcher = TextMatcher.new(:xpath => xpath, :text => text.to_s)
 				self
 			end
 

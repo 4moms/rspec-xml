@@ -7,6 +7,10 @@ describe RSpecXML::XMLMatchers do
 				"<node>HAI</node>".should have_xpath('/node').with_text('HAI')
 			end
 
+      it 'should handle numbers' do
+        "<node>3</node>".should have_xpath('/node').with_text(3)
+      end
+
 			it "should fail if the xpath does not exist" do
 				lambda { "<node>HAI</node>".should have_xpath('/ne').with_text('HAI')}.
 					should raise_error(RSpec::Expectations::ExpectationNotMetError)

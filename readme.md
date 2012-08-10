@@ -2,11 +2,11 @@
 *spec your xml*
 
 ## installation
-```ruby
+```ruby Gemfile
 gem 'rspec-xml'
 ```
 
 ## Usage
-```ruby
+```ruby some_spec.rb
 "<something>else</something>".should have_xpath('/something').with_text('else')
 ```

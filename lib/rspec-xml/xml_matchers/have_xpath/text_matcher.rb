@@ -6,7 +6,7 @@ module RSpecXML
 
       class TextMatcher
 
-        def initialize(options)
+        def initialize(options={})
           self.xpath = options[:xpath]
           self.text = options[:text]
         end
@@ -20,7 +20,7 @@ module RSpecXML
         end
 
         def failure_message_for_should_not
-          "expected #{xpath} to contain #{text}"
+          "expected #{xpath} to not exist with text: #{text}"
         end
 
         private

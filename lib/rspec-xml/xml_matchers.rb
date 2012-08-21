@@ -3,12 +3,13 @@ module RSpecXML
     class HaveXPath
         
       def initialize(xpath)
-        self.xpath = xpath 
         self.matcher = Matcher.new(:xpath => xpath)
       end 
 
       def with_text(text)
-        self.matcher = TextMatcher.new(:xpath => xpath, :text => text.to_s)
+        self.matcher = TextMatcher.new(
+          :xpath => matcher.xpath, 
+          :text => text.to_s )
         self
       end
 
@@ -26,10 +27,9 @@ module RSpecXML
 
       private
 
-      attr_accessor :xpath, :matcher
+      attr_accessor :matcher
 
       class Matcher
-
         def initialize(options={})
           self.xpath = options[:xpath]
         end
@@ -46,10 +46,7 @@ module RSpecXML
           "expected #{xpath} to not exist"
         end
 
-        private
-
         attr_accessor :xpath
-
       end
 
       class TextMatcher

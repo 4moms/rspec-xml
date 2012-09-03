@@ -1,18 +1,23 @@
 require 'spec_helper'
 
 module Factory
+  def self.example_group
+    @example_group ||= Class.new
+  end
   def self.xpath_matcher(xpath)
-    RSpecXML::XMLMatchers::HaveXPath.new(xpath)
+    RSpecXML::XMLMatchers::HaveXPath.new(xpath, example_group)
   end
 end
 
 describe RSpecXML::XMLMatchers::HaveXPath do
+  let(:example_group) { Factory.example_group }
+  
   describe '#intialize' do
     it 'should build and save a matcher containing the supplied xpath' do
       
       RSpecXML::XMLMatchers::HaveXPath::Matcher.
         expects(:new).
-        with(:xpath => 'fake xpath').
+        with(:xpath => 'fake xpath', :example_group => example_group).
         returns(:flag)
 
       xpath_matcher = Factory.xpath_matcher('fake xpath')

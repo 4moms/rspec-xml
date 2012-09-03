@@ -2,13 +2,16 @@ module RSpecXML
   module XMLMatchers
     class HaveXPath
         
-      def initialize(xpath)
-        self.matcher = Matcher.new(:xpath => xpath)
+      def initialize(xpath, example_group)
+        self.matcher = Matcher.new(
+          :xpath => xpath,
+          :example_group => example_group
+        )
       end 
 
       def with_text(text)
         self.matcher = TextMatcher.new(
-          :xpath => matcher.xpath, 
+          :xpath => matcher.full_xpath,
           :text => text.to_s )
         self
       end

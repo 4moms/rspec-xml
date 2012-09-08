@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'nokogiri'
+require 'rspec'
 
 module RSpecXML
 end

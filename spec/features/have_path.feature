@@ -1,3 +1,4 @@
+@have_path
 Feature: "some xml".should have_xpath('//something').with_text('Budweiser') ---
 
   Background:

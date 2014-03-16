@@ -13,6 +13,10 @@ module RSpecXML
           ::Nokogiri::XML(xml).xpath(full_xpath).count > 0
         end
 
+        def description
+          "have xpath #{full_xpath}"
+        end
+
         def failure_message_for_should
           "expected #{full_xpath} to exist" 
         end

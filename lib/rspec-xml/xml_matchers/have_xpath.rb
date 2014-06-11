@@ -1,18 +1,18 @@
 module RSpecXML
   module XMLMatchers
     class HaveXPath
-        
       def initialize(xpath, example_group)
         self.matcher = Matcher.new(
           :xpath => xpath,
           :example_group => example_group
         )
-      end 
+      end
 
       def with_text(text)
         self.matcher = TextMatcher.new(
           :xpath => matcher.full_xpath,
-          :text => text.to_s )
+          :text => text.to_s
+        )
         self
       end
 
@@ -20,12 +20,12 @@ module RSpecXML
         matcher.matches?(xml)
       end
 
-      def failure_message_for_should
-        matcher.failure_message_for_should
+      def failure_message
+        matcher.failure_message
       end
 
-      def failure_message_for_should_not
-        matcher.failure_message_for_should_not
+      def failure_message_when_negated
+        matcher.failure_message_when_negated
       end
 
       private

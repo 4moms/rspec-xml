@@ -4,16 +4,16 @@ describe RSpecXML::XMLMatchers do
   describe '#within' do
 
     it 'should create instance variable @xpath_stack inside within block' do
-      @xpath_stack.should be_nil
+      expect(@xpath_stack).to be_nil
       within("foo/bar") do
-        @xpath_stack.should == ["foo/bar"]
+        expect(@xpath_stack).to eq ["foo/bar"]
       end
     end
 
     it 'should increase @xpath_stack properly when blocks are nested' do
       within("foo") do
         within("/bar") do
-          @xpath_stack.should == ["foo", "/bar"]
+          expect(@xpath_stack).to eq ["foo", "/bar"]
         end
       end
     end
@@ -22,9 +22,9 @@ describe RSpecXML::XMLMatchers do
       within("foo") do
         within("/bar") do
         end
-        @xpath_stack.should == ["foo"]
+        expect(@xpath_stack).to eq ["foo"]
       end
-      @xpath_stack.should == []
+      expect(@xpath_stack).to eq []
     end
 
   end

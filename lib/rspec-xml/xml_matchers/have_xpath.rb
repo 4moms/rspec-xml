@@ -13,6 +13,16 @@ module RSpecXML
           :xpath => matcher.full_xpath,
           :text => text.to_s
         )
+
+        self
+      end
+
+      def with_attr(attr)
+        self.matcher = AttrMatcher.new(
+          :xpath => matcher.full_xpath,
+          :attr => attr
+        )
+
         self
       end
 

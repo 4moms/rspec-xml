@@ -11,6 +11,14 @@ steps_for :have_path do
     @test = lambda { @xml.should have_xpath("//#{node_name}").with_text(text) }
   end
 
+  step 'the :node_name node contains the attribute :key with value: :value' do |node_name, key, value|
+    @xml = @xml.call "<#{node_name} #{key}=#{value}></#{node_name}>"
+  end
+
+  step 'I test for the attribute: :key to be :value within the :node_name node' do |key, value, node_name|
+    @test = lambda { @xml.should have_xpath("//#{node_name}").with_attr({key => value}) }
+  end
+
   step 'the test should pass' do
     @test.should_not raise_error(RSpec::Expectations::ExpectationNotMetError)
   end

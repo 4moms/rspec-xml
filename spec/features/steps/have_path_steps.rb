@@ -12,7 +12,7 @@ steps_for :have_path do
   end
 
   step 'the test should pass' do
-    @test.should_not raise_error(RSpec::Expectations::ExpectationNotMetError)
+    @test.should_not raise_error
   end
 
   step 'the test should fail' do

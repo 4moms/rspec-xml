@@ -13,12 +13,12 @@ describe RSpecXML::XMLMatchers::HaveXPath::Matcher do
     
     it 'should return true if the supplied xml contains the xpath' do
       matcher = subject.class.new(:xpath => '//hi')
-      matcher.matches?('<hi></hi>').should be_true
+      matcher.matches?('<hi></hi>').should == true
     end
 
     it 'should return false if the supplied xml contains the xpath' do
       matcher = subject.class.new(:xpath => '//hi')
-      matcher.matches?('<no></no>').should be_false
+      matcher.matches?('<no></no>').should == false
     end
   end
 

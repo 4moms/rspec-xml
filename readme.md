@@ -21,13 +21,9 @@ gem 'rspec-xml'
 ### Builder
 
 ```ruby
-xml = ''
-builder = Builder::XmlMarkup.new(:target => xml)
-builder.instruct!
+xml = Nokogiri::XML::Builder.new do |xml|
+        xml.send("inner", "stuff", "Country" => "USA", "City" => "New York")
+      end.to_xml
 
-builder.some_xml do |xml|
-  xml.inner 'stuff'
-end
-
-xml.should have_xpath('//some_xml/inner').with_text('stuff')
+xml.should have_xpath('//some_xml/inner').with_text('stuff').with_attr({"Country" => "USA", "City" =>"New York"})
 ```

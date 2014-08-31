@@ -40,6 +40,19 @@ describe RSpecXML::XMLMatchers::HaveXPath do
     end
   end
 
+  describe '#with_attr' do
+    it 'should build a new attribute matcher containing supplied xpath and attributes' do
+
+      RSpecXML::XMLMatchers::HaveXPath::AttrMatcher.
+        expects(:new).
+        with(:xpath => 'fake xpath', :attr => {"name" => "John Doe"}).
+        returns(:flag)
+
+      xpath_matcher = Factory.xpath_matcher('fake xpath').with_attr({"name" => "John Doe"})
+      xpath_matcher.send(:matcher).should == :flag
+    end
+  end
+
   describe '#failure_message_for_should' do
     it 'should delegate to the matcher' do
       xpath_matcher = Factory.xpath_matcher('whatever')

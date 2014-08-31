@@ -12,7 +12,18 @@ module RSpecXML
       def with_text(text)
         self.matcher = TextMatcher.new(
           :xpath => matcher.full_xpath,
-          :text => text.to_s )
+          :text => text.to_s
+        )
+
+        self
+      end
+
+      def with_attr(attr)
+        self.matcher = AttrMatcher.new(
+          :xpath => matcher.full_xpath,
+          :attr => attr
+        )
+
         self
       end
 

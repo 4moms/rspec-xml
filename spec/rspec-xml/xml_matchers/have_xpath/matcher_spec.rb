@@ -35,4 +35,11 @@ describe RSpecXML::XMLMatchers::HaveXPath::Matcher do
       expect(subject.failure_message_when_negated).to eq "expected xpath to not exist"
     end
   end
+
+  describe '#description' do
+    it 'should return a message describing the xpath matcher' do
+      subject.stubs(:xpath).returns('/expr')
+      subject.description.should == 'have xpath /expr'
+    end
+  end
 end

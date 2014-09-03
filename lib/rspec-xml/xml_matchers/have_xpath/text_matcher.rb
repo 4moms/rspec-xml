@@ -15,6 +15,10 @@ module RSpecXML
           ::Nokogiri::XML(xml).xpath(xpath).text == text
         end
 
+        def description
+          "have xpath #{xpath} with text #{text}"
+        end
+
         def failure_message
           "expected #{xpath} to contain #{text}"
         end

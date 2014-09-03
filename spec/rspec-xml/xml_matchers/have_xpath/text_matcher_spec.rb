@@ -54,7 +54,7 @@ describe RSpecXML::XMLMatchers::HaveXPath::TextMatcher do
     it 'should return a message describing the text matcher' do
       subject.stubs(:xpath).returns('/expr')
       subject.stubs(:text).returns('text')
-      subject.description.should == 'have xpath /expr with text text'
+      expect(subject.description).to eq 'have xpath /expr with text text'
     end
   end
 end

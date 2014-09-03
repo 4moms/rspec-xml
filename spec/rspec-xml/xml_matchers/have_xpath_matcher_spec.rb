@@ -49,7 +49,7 @@ describe RSpecXML::XMLMatchers::HaveXPath do
         returns(:flag)
 
       xpath_matcher = Factory.xpath_matcher('fake xpath').with_attr({"name" => "John Doe"})
-      xpath_matcher.send(:matcher).should == :flag
+      expect(xpath_matcher.send(:matcher)).to eq :flag
     end
   end
 

@@ -39,7 +39,7 @@ describe RSpecXML::XMLMatchers::HaveXPath::Matcher do
   describe '#description' do
     it 'should return a message describing the xpath matcher' do
       subject.stubs(:xpath).returns('/expr')
-      subject.description.should == 'have xpath /expr'
+      expect(subject.description).to eq 'have xpath /expr'
     end
   end
 end

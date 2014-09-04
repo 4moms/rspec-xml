@@ -17,11 +17,11 @@ module RSpecXML
           "have xpath #{full_xpath}"
         end
 
-        def failure_message_for_should
-          "expected #{full_xpath} to exist" 
+        def failure_message
+          "expected #{full_xpath} to exist"
         end
 
-        def failure_message_for_should_not
+        def failure_message_when_negated
           "expected #{full_xpath} to not exist"
         end
 

@@ -1,4 +1,5 @@
 require File.expand_path('../../lib/rspec-xml', __FILE__)
+require 'turnip'
 
 Dir.glob('spec/features/steps/**/*.rb') { |f| require File.expand_path(f) }
 

@@ -1,4 +1,7 @@
 # rspec-xml
+[![Gem Version](https://badge.fury.io/rb/rspec-xml.svg)](http://badge.fury.io/rb/rspec-xml)
+[![Build Status](https://travis-ci.org/4moms/rspec-xml.svg?branch=master)](https://travis-ci.org/4moms/rspec-xml)
+
 *spec your xml*
 
 ## installation

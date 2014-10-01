@@ -13,7 +13,7 @@ steps_for :within do
       within('xml') do
         within('/elem') do
           table.hashes.each do |hash|
-            @xml.should have_xpath("/#{hash["node"]}").with_text(hash["text"])
+            expect(@xml).to have_xpath("/#{hash["node"]}").with_text(hash["text"])
           end
         end
       end
@@ -21,11 +21,11 @@ steps_for :within do
   end
 
   step 'the test should pass' do
-    @test.should_not raise_error
+    expect(@test).not_to raise_error
   end
 
   step 'the test should fail' do
-    @test.should raise_error(RSpec::Expectations::ExpectationNotMetError)
+    expect(@test).to raise_error(RSpec::Expectations::ExpectationNotMetError)
   end
 end
 

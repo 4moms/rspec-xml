@@ -12,16 +12,22 @@ module RSpecXML
         end
 
         def matches?(xml)
-          attr.each do |k, v|
-            ::Nokogiri::XML(xml).xpath(xpath).attr(k.to_s).value == v.to_s
+          node = ::Nokogiri::XML(xml).xpath(xpath)
+          !node.empty? && attr.all? do |k, v|
+            attr_value = node.attr(k.to_s)
+            !attr_value.nil? && attr_value.value == v.to_s
           end
         end
 
-        def failure_message_for_should
-          "expected #{xpath} to contain #{attr}"
+        def description
+          "have xpath #{xpath} with attribute: #{attr}"
         end
 
-        def failure_message_for_should_not
+        def failure_message
+          "expected #{xpath} to contain attribute: #{attr}"
+        end
+
+        def failure_message_when_negated
           "expected #{xpath} to not exist with attribute: #{attr}"
         end
 

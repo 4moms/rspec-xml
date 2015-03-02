@@ -12,10 +12,12 @@ module RSpecXML
         end
 
         def matches?(xml)
-          node = ::Nokogiri::XML(xml).xpath(xpath)
-          !node.empty? && attr.all? do |k, v|
-            attr_value = node.attr(k.to_s)
-            !attr_value.nil? && attr_value.value == v.to_s
+          nodes = ::Nokogiri::XML(xml).xpath(xpath).to_a
+          !nodes.empty? && nodes.any? do |node|
+            attr.all? do |k, v|
+              attr_value = node.attr(k.to_s)
+              !attr_value.nil? && attr_value == v.to_s
+            end
           end
         end
 

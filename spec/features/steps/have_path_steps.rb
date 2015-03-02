@@ -15,7 +15,7 @@ steps_for :have_path do
     @xml = @xml.call "<#{node_name} #{key}=\"#{value}\"></#{node_name}>"
   end
 
-  step 'I test for the attribute: :key to be :value within the :node_name node' do |key, value, node_name|
+  step 'I test for the attributce: :key to be :value within the :node_name node' do |key, value, node_name|
     @test = lambda { expect(@xml).to have_xpath("//#{node_name}").with_attr({key => value}) }
   end
 

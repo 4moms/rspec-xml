@@ -12,7 +12,7 @@ module RSpecXML
         end
 
         def matches?(xml)
-          ::Nokogiri::XML(xml).xpath(xpath).text == text
+          ::Nokogiri::XML(xml).xpath(xpath).to_a.any? { |e| e.text == text }
         end
 
         def description

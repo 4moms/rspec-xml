@@ -18,8 +18,15 @@ describe RSpecXML::XMLMatchers::HaveXPath::AttrMatcher do
     # TODO mock out Nokogiri
 
     it 'should return true if the supplied xml contains the xpath with supplied attributes' do
-      matcher = subject.class.new(:xpath => '//hi', :attr => {'foo' => 'bar', 'x' => 2})
-      expect(matcher.matches?('<hi foo="bar" x="2"/>')).to be_truthy
+      matcher = subject.class.new(:xpath => '//root/hi', :attr => {'foo' => 'bar', 'x' => 2})
+      expect(matcher.matches?(<<EOS
+      <root>
+          <hi foo="bar" x="1"/>
+          <hi foo="bar" x="2"/>
+          <hi foo="bar" x="3"/>
+      </root>
+EOS
+             )).to be_truthy
     end
 
     it 'should return false if the supplied xml contains the xpath but not the one of the attibutes' do

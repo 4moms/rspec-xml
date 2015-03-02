@@ -18,8 +18,15 @@ describe RSpecXML::XMLMatchers::HaveXPath::TextMatcher do
     # TODO mock out Nokogiri
 
     it 'should return true if the supplied xml contains the xpath with supplied text' do
-      matcher = subject.class.new(:xpath => '//hi', :text => 'hi')
-      expect(matcher.matches?('<hi>hi</hi>')).to be_truthy
+      matcher = subject.class.new(:xpath => '//root/hi', :text => 'hi')
+      expect(matcher.matches?(<<EOS
+      <root>
+          <hi>hello</hi>
+          <hi>hi</hi>
+          <hi>hey</hi>
+      </root>
+EOS
+             )).to be_truthy
     end
 
     it 'should return false if the supplied xml contains the xpath but not the text' do
